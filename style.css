@@ -1,3 +1,7 @@
+/* General styles */
+body{
+  font-family: 'Inter', sans-serif;
+}
 main {
   background-color: blue;
   width: 100%;
@@ -17,7 +21,9 @@ aside {
   grid-row: 2 / span 1;
   background-color: burlywood;
 }
-
+h1{
+  font-size: 6vw;
+}
 @media only screen and (min-width: 768px) {
   main {
     width: 50%;
@@ -35,4 +41,14 @@ aside {
     grid-row: 1 / span 1;
     background-color: chartreuse;
   }
+  h1{
+    font-size: 3vw;
+  }
+}
+
+/* Credits section */
+#credits{
+  display:flex;
+  align-items:center;
+  justify-content: center;
 }
