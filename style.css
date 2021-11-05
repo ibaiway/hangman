@@ -18,6 +18,15 @@ aside {
   background-color: burlywood;
 }
 
+#register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  font-size: 6vw;
+}
+
 @media only screen and (min-width: 768px) {
   main {
     width: 50%;
@@ -34,5 +43,8 @@ aside {
     grid-column: 4 / span 1;
     grid-row: 1 / span 1;
     background-color: chartreuse;
+  }
+  h1 {
+    font-size: 3vw;
   }
 }
