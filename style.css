@@ -9,16 +9,16 @@ main {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: repeat(3,1fr);
 }
 section {
   grid-column: 1 / span 1;
-  grid-row: 1 / span 1;
+  grid-row: 1 / span 2;
   background-color: brown;
 }
 aside {
   grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
   background-color: burlywood;
 }
 
@@ -30,7 +30,46 @@ aside {
 h1 {
   font-size: 6vw;
 }
-
+/* GAME SECTION */
+#game{
+  display:grid;
+  width:100%;
+  grid-template-columns:1fr;
+  grid-template-rows: repeat(5,1fr);
+}
+#hangImg{
+  grid-row:1 / span 2;
+  background-color: rgb(13, 55, 241);
+}
+#word{
+  grid-row: 3 / span 1;
+  background-color: khaki;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+/* word section */
+.letter-container{
+  display:flex;
+  flex-direction: row;
+  gap:1rem;
+  flex-wrap: wrap;
+}
+.letter{
+  border-bottom:10px solid black;
+  width:7%;
+  margin-top:6%;
+}
+#keyboard{
+  grid-row:4 / span 2;
+  background-color: rgb(0, 0, 0);
+}
+/* Credits section */
+#credits{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
 @media only screen and (min-width: 768px) {
   main {
     width: 50%;
@@ -51,11 +90,25 @@ h1 {
   h1{
     font-size: 3vw;
   }
+  #game{
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+  }
+  #hangImg{
+    grid-column: 1 /span 1;
+    grid-row: 1 / span 2;
+    background-color: rgb(13, 55, 241);
+  }
+  #word{
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 2;
+    background-color: khaki;
+    padding:5%;
+  }
+  #keyboard{
+    grid-row:3 / span 1;
+    grid-column: 1 /span 3;
+    background-color: rgb(0, 0, 0);
+  }
 }
 
-/* Credits section */
-#credits{
-  display:flex;
-  align-items:center;
-  justify-content: center;
-}
