@@ -21,9 +21,16 @@ aside {
   grid-row: 2 / span 1;
   background-color: burlywood;
 }
-h1{
+
+#register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
   font-size: 6vw;
 }
+
 @media only screen and (min-width: 768px) {
   main {
     width: 50%;
