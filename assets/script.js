@@ -22,5 +22,4 @@ btnSpawn();
 function pressedBtn(e){
     e.target.style.visibility="hidden";
     e.target.removeEventListener("click",hideBtn);
-    console.log("paso");
 }
