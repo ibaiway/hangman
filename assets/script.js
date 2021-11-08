@@ -5,6 +5,7 @@ const createBtn = document.createElement("button");
 const registerPage = document.getElementById("register");
 const gamePage = document.getElementById("game");
 const creditPage = document.getElementById("credits");
+const letterContainer = document.querySelector(".letter-container");
 const arrayAbc = [
   "a",
   "b",
@@ -91,6 +92,13 @@ function startGame(difficulty) {
       Math.floor(Math.random() * wordList[difficulty].length)
     ];
   letters = currentWord.split("");
+  letters.forEach((element) => {
+    let letterDiv = document.createElement("div");
+    letterDiv.classList = "letter";
+    letterDiv.innerHTML = element;
+    console.log(letterDiv);
+    letterContainer.appendChild(letterDiv);
+  });
   console.log(letters);
   console.log(currentWord);
   registerPage.style.display = "none";
