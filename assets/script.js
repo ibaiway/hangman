@@ -43,15 +43,15 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer;
-let currentWord;
-let letters;
+let currentPlayer,currentWord,letters,lineLetters;
+let userArray=[];
+let error=0;
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
 document.getElementById("startButton").addEventListener("click", () => {
   if (setName()) {
-    startGame(4);
+    startGame(6);
   } else {
     return false;
   }
@@ -93,6 +93,8 @@ function startGame(difficulty) {
   letters = currentWord.split("");
   console.log(letters);
   console.log(currentWord);
+  changeImage(0);
+  lineLetters = document.getElementsByClassName("letter");
   registerPage.style.display = "none";
   gamePage.style.display = "grid";
   btnSpawn();
@@ -104,8 +106,26 @@ function changeToGame() {
 }
 //GAME FUNCTIONS
 function pressedBtn(e) {
+    let letterFinded=letters.indexOf(e.target.innerText)
+    if(letterFinded>-1){
+        while(letterFinded!=-1){
+            userArray[letterFinded]=e.target.innerText;
+            lineLetters[letterFinded].innerText=e.target.innerText;
+            letterFinded=letters.indexOf(e.target.innerText, letterFinded+1); 
+        }
+    }else{
+        error++;
+        changeImage(error);
+        if(error==6){
+            alert("HAS PERDIDO, METE UN LEURO");
+        }
+    }
+        if(userArray.toString()==letters.toString()){
+            alert("HAS GANADO");
+        }
+    
   e.target.style.visibility = "hidden";
-  e.target.removeEventListener("click", hideBtn);
+  e.target.removeEventListener("click", pressedBtn);
 }
 function btnSpawn() {
   for (let i = 0; i < arrayAbc.length; i++) {
@@ -117,9 +137,7 @@ function btnSpawn() {
   }
 }
 function changeImage(error) {
-  const imgElement = document.createElement("img");
-  imgElement.src = hangmanImages[error];
-  hangImg.innerHTML = imgElement;
+  hangImg.innerHTML = "<img src='"+hangmanImages[error]+"' alt='hangman'>";
 }
 function changeToCredits() {
   //This function changes the active section to the credits section
