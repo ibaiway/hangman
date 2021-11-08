@@ -1,3 +1,4 @@
+import { wordList } from "./words";
 //constants
 const keyboard = document.getElementById("keyboard");
 const createBtn = document.createElement("button");
