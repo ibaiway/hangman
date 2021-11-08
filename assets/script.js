@@ -1,6 +1,9 @@
 //constants
 const keyboard = document.getElementById("keyboard");
 const createBtn = document.createElement("button");
+const registerPage = document.getElementById("register");
+const gamePage = document.getElementById("game");
+const creditPage =document.getElementById("credits");
 const arrayAbc = [
   "a",
   "b",
@@ -44,6 +47,8 @@ let currentPlayer;
 document.getElementById("startButton").addEventListener("click", () => {
   if (setName()) {
     startGame();
+  }else{
+      return false;
   }
 });
 //functions
@@ -56,11 +61,13 @@ function btnSpawn() {
     createBtn.addEventListener("click", pressedBtn);
   }
 }
-btnSpawn();
 
 function startGame(difficulty) {
   // Change section -> set hangman Image to step 0 -> errors = 0 -> get a word from words array
   // gets value difficulty, depending on this we will take a more difficult word.
+  registerPage.style.display="none";
+  gamePage.style.display="grid";
+  btnSpawn();
 }
 
 function changeToGame() {
@@ -74,7 +81,7 @@ function changeToCredits() {
 }
 
 function setName() {
-  const nameElement = document.getElementById("name");
+const nameElement = document.getElementById("name");
   if (validateName(nameElement.value)) {
     currentPlayer = createPlayer(nameElement.value);
     //TODO add name to aside
@@ -85,7 +92,7 @@ function setName() {
     return false;
   }
 }
-
+//object
 function createPlayer(name, score = 0) {
   return {
     name: name,
@@ -94,9 +101,7 @@ function createPlayer(name, score = 0) {
 }
 
 function validateName(value) {
-  if (value.indexOf(" ") >= 0) {
-    return false;
-  } else if (value.length < 1 && value.length > 10) {
+  if (value.indexOf(" ") >= 0 ||value.length < 1 || value.length > 10 ) {
     return false;
   } else {
     return true;
