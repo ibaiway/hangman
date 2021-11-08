@@ -37,7 +37,7 @@ h1 {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 1fr);
 }
-#hangImg {
+#hangDivImg {
   grid-row: 1 / span 2;
   background-color: rgb(13, 55, 241);
 }
@@ -101,7 +101,7 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
-  #hangImg {
+  #hangDivImg {
     grid-column: 1 / span 1;
     grid-row: 1 / span 2;
     background-color: rgb(13, 55, 241);
