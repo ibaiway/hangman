@@ -1,4 +1,4 @@
-wordList = {
+const wordList = {
   4: [
     "arch",
     "bake",
