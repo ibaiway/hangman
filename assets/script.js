@@ -45,6 +45,7 @@ const hangmanImages = [
 ];
 let currentPlayer;
 let currentWord;
+let letters;
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
@@ -89,7 +90,7 @@ function startGame(difficulty) {
     wordList[difficulty][
       Math.floor(Math.random() * wordList[difficulty].length)
     ];
-  const letters = currentWord.split("");
+  letters = currentWord.split("");
   console.log(letters);
   console.log(currentWord);
   registerPage.style.display = "none";
