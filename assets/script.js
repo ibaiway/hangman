@@ -13,7 +13,14 @@ function btnSpawn(){
         createBtn.classList.add("keyBtn");
         createBtn.innerText=arrayAbc[i];
         keyboard.appendChild(createBtn);
+        createBtn.addEventListener("click",pressedBtn);
     }
-}
 
+}
 btnSpawn();
+
+function pressedBtn(e){
+    e.target.style.visibility="hidden";
+    e.target.removeEventListener("click",hideBtn);
+    console.log("paso");
+}
