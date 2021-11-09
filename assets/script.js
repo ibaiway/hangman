@@ -56,14 +56,17 @@ let contDifficult = 4;
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
-document.getElementById("startButton").addEventListener("click", () => {
+//ENTER METHOD
+document.addEventListener("keyup",validateRegister);
+//CLICK METHOD
+document.getElementById("startButton").addEventListener("click", validateRegister)
+function validateRegister(){
   if (setName()) {
     startGame(4);
   } else {
     return false;
   }
-});
-
+}
 function setName() {
   const nameElement = document.getElementById("name");
   if (validateName(nameElement.value)) {
@@ -93,6 +96,8 @@ function createPlayer(name, score = 0) {
   };
 }
 function startGame(difficulty) {
+  //*remove event listener from enter
+  document.removeEventListener("keyup",validateRegister);
   // Change section -> set hangman Image to step 0 -> errors = 0 -> get a word from words array
   // gets value difficulty, depending on this we will take a more difficult word.
   currentWord =
@@ -210,6 +215,9 @@ function changeToCredits(boolean) {
   }
   //add functionality to play again btn
   playAgainBtn.addEventListener("click", playAgain);
+  document.addEventListener("keyup",(e)=>{
+    if(e.key=="Enter")playAgain();
+  });
   //gamepage hidden, display the credits page
   gamePage.style.display = "none";
   creditPage.style.display = "flex";
