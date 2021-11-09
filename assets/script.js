@@ -44,9 +44,9 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer,currentWord,letters,lineLetters;
-let userArray=[];
-let error=0;
+let currentPlayer, currentWord, letters, lineLetters;
+let userArray = [];
+let error = 0;
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
@@ -112,24 +112,24 @@ function changeToGame() {
 }
 //GAME FUNCTIONS
 function pressedBtn(e) {
-    let letterFinded=letters.indexOf(e.target.innerText)
-    if(letterFinded>-1){
-        while(letterFinded!=-1){
-            userArray[letterFinded]=e.target.innerText;
-            lineLetters[letterFinded].innerText=e.target.innerText;
-            letterFinded=letters.indexOf(e.target.innerText, letterFinded+1); 
-        }
-    }else{
-        error++;
-        changeImage(error);
-        if(error==6){
-            alert("HAS PERDIDO, METE UN LEURO");
-        }
+  let letterFinded = letters.indexOf(e.target.innerText);
+  if (letterFinded > -1) {
+    while (letterFinded != -1) {
+      userArray[letterFinded] = e.target.innerText;
+      lineLetters[letterFinded].innerText = e.target.innerText;
+      letterFinded = letters.indexOf(e.target.innerText, letterFinded + 1);
     }
-        if(userArray.toString()==letters.toString()){
-            alert("HAS GANADO");
-        }
-    
+  } else {
+    error++;
+    changeImage(error);
+    if (error == 6) {
+      alert("HAS PERDIDO, METE UN LEURO");
+    }
+  }
+  if (userArray.toString() == letters.toString()) {
+    alert("HAS GANADO");
+  }
+
   e.target.style.visibility = "hidden";
   e.target.removeEventListener("click", pressedBtn);
 }
@@ -143,7 +143,7 @@ function btnSpawn() {
   }
 }
 function changeImage(error) {
-  hangImg.innerHTML = "<img src='"+hangmanImages[error]+"' alt='hangman'>";
+  hangImg.src = hangmanImages[error];
 }
 function changeToCredits() {
   //This function changes the active section to the credits section

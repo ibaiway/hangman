@@ -40,16 +40,15 @@ h1 {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 1fr);
 }
-#hangImg {
+#hangDivImg {
   display:flex;
   align-items: center;
   justify-content: center;
   grid-row: 1 / span 3;
   background-color: rgb(13, 55, 241);
 }
-#hangImg img{
+#hangImg{
   width:25%;
-  
 }
 #word {
   grid-row: 4 / span 1;
@@ -110,12 +109,12 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
-  #hangImg {
+  #hangDivImg {
     grid-column: 1 / span 1;
     grid-row: 1 / span 2;
     background-color: rgb(13, 55, 241);
   }
-  #hangImg img{
+  #hangImg{
     width:100%;
     
   }
