@@ -6,6 +6,7 @@ const registerPage = document.getElementById("register");
 const gamePage = document.getElementById("game");
 const creditPage = document.getElementById("credits");
 const letterContainer = document.querySelector(".letter-container");
+const currentDiv = document.getElementById("current");
 const arrayAbc = [
   "a",
   "b",
@@ -44,7 +45,7 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer, currentWord, letters, lineLetters,startTime;
+let currentPlayer, currentWord, letters, lineLetters, startTime;
 let userArray = [];
 let usedLetters = [];
 let error = 0;
@@ -64,6 +65,8 @@ function setName() {
   if (validateName(nameElement.value)) {
     currentPlayer = createPlayer(nameElement.value);
     //TODO add name to aside
+    currentDiv.innerHTML =
+      "<h4>" + currentPlayer.name + "</h4><p>Currently playing...</p>";
     return true;
   } else {
     alert("El nombre no cumple las reglas");
@@ -112,7 +115,7 @@ function changeToGame() {
   gamePage.style.display = "grid";
   document.addEventListener("keyup", keyboardPress);
   btnSpawn();
-  startTime=new Date();
+  startTime = new Date();
 }
 //GAME FUNCTIONS
 
@@ -179,11 +182,11 @@ function btnSpawn() {
 function changeImage(error) {
   hangImg.src = hangmanImages[error];
 }
-function win(){
-  let endTime=new Date();
-  let timePlayed=endTime-startTime;
-  console.log(Math.round((timePlayed/1000)*10)/10);
-  currentPlayer.score=Math.round((timePlayed/1000)*10)/10;
+function win() {
+  let endTime = new Date();
+  let timePlayed = endTime - startTime;
+  console.log(Math.round((timePlayed / 1000) * 10) / 10);
+  currentPlayer.score = Math.round((timePlayed / 1000) * 10) / 10;
   placeInScoreboard(currentPlayer);
 }
 
