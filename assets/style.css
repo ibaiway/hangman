@@ -1,6 +1,8 @@
 /* General styles */
 body {
   font-family: "Inter", sans-serif;
+  background-image:url(img/background.jpg);
+  background-size:cover;
 }
 main {
   background-color: blue;
