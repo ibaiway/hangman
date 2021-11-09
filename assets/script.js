@@ -53,16 +53,17 @@ let userArray = [];
 let usedLetters = [];
 let isWinner = true;
 let contDifficult = 4;
+let status = "start";
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
-//ENTER METHOD
-document.addEventListener("keyup",(e)=>{
-  if(e.key=="Enter")validateRegister();
-},{once:true});
+//Keyboard
+document.addEventListener("keyup", keyboardPress);
 //CLICK METHOD
-document.getElementById("startButton").addEventListener("click", validateRegister,{once:true})
-function validateRegister(){
+document
+  .getElementById("startButton")
+  .addEventListener("click", validateRegister, { once: true });
+function validateRegister() {
   if (setName()) {
     startGame(4);
   } else {
@@ -123,8 +124,8 @@ function changeToGame() {
   lineLetters = document.getElementsByClassName("letter");
   registerPage.style.display = "none";
   gamePage.style.display = "grid";
-  document.addEventListener("keyup", keyboardPress);
   btnSpawn();
+  status = "game";
   startTime = new Date();
 }
 //GAME FUNCTIONS
@@ -160,16 +161,31 @@ function pressedBtn(e) {
 
 function keyboardPress(event) {
   //detects physical keyboard letter
-  const lowerCaseLetter = event.key.toLowerCase();
-  if (arrayAbc.includes(lowerCaseLetter)) {
-    if (!usedLetters.includes(lowerCaseLetter)) {
-      processLetter(event.key.toLowerCase());
-      for (let index = 0; index < keyboard.children.length; index++) {
-        if (keyboard.children[index].innerText == lowerCaseLetter) {
-          removeBtn(keyboard.children[index]);
+  switch (status) {
+    case "game":
+      const lowerCaseLetter = event.key.toLowerCase();
+      if (arrayAbc.includes(lowerCaseLetter)) {
+        if (!usedLetters.includes(lowerCaseLetter)) {
+          processLetter(event.key.toLowerCase());
+          for (let index = 0; index < keyboard.children.length; index++) {
+            if (keyboard.children[index].innerText == lowerCaseLetter) {
+              removeBtn(keyboard.children[index]);
+            }
+          }
         }
       }
-    }
+      break;
+    case "credits":
+      if (event.key == "Enter") {
+        playAgain();
+      }
+      break;
+
+    default:
+      if (event.key == "Enter") {
+        validateRegister();
+      }
+      break;
   }
 }
 
@@ -183,7 +199,7 @@ function btnSpawn() {
     createBtn.classList.add("keyBtn");
     createBtn.innerText = arrayAbc[i];
     keyboard.appendChild(createBtn);
-    createBtn.addEventListener("click", pressedBtn,{once:true});
+    createBtn.addEventListener("click", pressedBtn, { once: true });
   }
 }
 function changeImage(error) {
@@ -213,10 +229,8 @@ function changeToCredits(boolean) {
     creditsTime.innerText = "Try again";
   }
   //add functionality to play again btn
-  playAgainBtn.addEventListener("click", playAgain,{once:true});
-  document.addEventListener("keyup",(e)=>{
-    if(e.key=="Enter")playAgain();
-  },{once:true});
+  playAgainBtn.addEventListener("click", playAgain, { once: true });
+  status = "credits";
   //gamepage hidden, display the credits page
   gamePage.style.display = "none";
   creditPage.style.display = "flex";
@@ -233,8 +247,6 @@ function deleteGameDisplay() {
   // Empty usedletters array
   usedLetters = [];
   userArray = [];
-  //remove keyboard event listener
-  document.removeEventListener("keyup", keyboardPress);
   //remove msg from credits page
   creditsContent.firstChild.innerText = "";
   //remove all btns to start again
