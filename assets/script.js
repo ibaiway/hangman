@@ -44,7 +44,7 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer, currentWord, letters, lineLetters;
+let currentPlayer, currentWord, letters, lineLetters,startTime;
 let userArray = [];
 let usedLetters = [];
 let error = 0;
@@ -100,17 +100,19 @@ function startGame(difficulty) {
   });
   console.log(letters);
   console.log(currentWord);
+  changeToGame();
+}
+function changeToGame() {
+  //This function changes the active section to the game section
+  //set the events listeners for the letter buttons
+  //set the hangman image to step 0
   changeImage(0);
   lineLetters = document.getElementsByClassName("letter");
   registerPage.style.display = "none";
   gamePage.style.display = "grid";
   document.addEventListener("keyup", keyboardPress);
   btnSpawn();
-}
-function changeToGame() {
-  //This function changes the active section to the game section
-  //set the events listeners for the letter buttons
-  //set the hangman image to step 0
+  startTime=new Date();
 }
 //GAME FUNCTIONS
 
@@ -132,6 +134,7 @@ function processLetter(letter) {
     }
   }
   if (userArray.toString() == letters.toString()) {
+    win();
     alert("HAS GANADO");
   }
 }
@@ -176,6 +179,14 @@ function btnSpawn() {
 function changeImage(error) {
   hangImg.src = hangmanImages[error];
 }
+function win(){
+  let endTime=new Date();
+  let timePlayed=endTime-startTime;
+  console.log(Math.round((timePlayed/1000)*10)/10);
+  currentPlayer.score=Math.round((timePlayed/1000)*10)/10;
+  placeInScoreboard(currentPlayer);
+}
+
 function changeToCredits() {
   //This function changes the active section to the credits section
 }
