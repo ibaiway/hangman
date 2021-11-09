@@ -46,6 +46,7 @@ const hangmanImages = [
 ];
 let currentPlayer, currentWord, letters, lineLetters;
 let userArray = [];
+let usedLetters = [];
 let error = 0;
 //eventListeners
 //functions
@@ -103,6 +104,7 @@ function startGame(difficulty) {
   lineLetters = document.getElementsByClassName("letter");
   registerPage.style.display = "none";
   gamePage.style.display = "grid";
+  document.addEventListener("keyup", keyboardPress);
   btnSpawn();
 }
 function changeToGame() {
@@ -111,27 +113,56 @@ function changeToGame() {
   //set the hangman image to step 0
 }
 //GAME FUNCTIONS
-function pressedBtn(e) {
-  let letterFinded = letters.indexOf(e.target.innerText);
+
+function processLetter(letter) {
+  usedLetters.push(letter);
+  let letterFinded = letters.indexOf(letter);
   if (letterFinded > -1) {
     while (letterFinded != -1) {
-      userArray[letterFinded] = e.target.innerText;
-      lineLetters[letterFinded].innerText = e.target.innerText;
-      letterFinded = letters.indexOf(e.target.innerText, letterFinded + 1);
+      userArray[letterFinded] = letter;
+      lineLetters[letterFinded].innerText = letter;
+      letterFinded = letters.indexOf(letter, letterFinded + 1);
     }
   } else {
     error++;
     changeImage(error);
     if (error == 6) {
+      document.removeEventListener("keyup", keyboardPress);
       alert("HAS PERDIDO, METE UN LEURO");
     }
   }
   if (userArray.toString() == letters.toString()) {
     alert("HAS GANADO");
   }
+}
+function pressedBtn(e) {
+  //Detects clicked letter
+  processLetter(e.target.innerText);
+  console.log(e.target.innerText);
+  //e.target.style.visibility = "hidden";
+  //e.target.removeEventListener("click", pressedBtn);
+  removeBtn(e.target);
+}
 
-  e.target.style.visibility = "hidden";
-  e.target.removeEventListener("click", pressedBtn);
+function keyboardPress(event) {
+  //detects physical keyboard letter
+  const lowerCaseLetter = event.key.toLowerCase();
+  if (arrayAbc.includes(lowerCaseLetter)) {
+    if (!usedLetters.includes(lowerCaseLetter)) {
+      processLetter(event.key.toLowerCase());
+      for (let index = 0; index < keyboard.children.length; index++) {
+        if (keyboard.children[index].innerText == lowerCaseLetter) {
+          removeBtn(keyboard.children[index]);
+        }
+      }
+    }
+  }
+}
+
+function removeBtn(element) {
+  //removes button of a given letter element
+  element.style.visibility = "hidden";
+  element.removeEventListener("click", pressedBtn);
 }
 function btnSpawn() {
   for (let i = 0; i < arrayAbc.length; i++) {
