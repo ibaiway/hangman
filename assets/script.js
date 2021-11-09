@@ -9,6 +9,7 @@ const letterContainer = document.querySelector(".letter-container");
 const currentDiv = document.getElementById("current");
 const creditsContent = document.getElementsByClassName("content")[1];
 const playAgainBtn = document.getElementById("playAgain");
+const creditsTime = document.getElementById("creditsTime");
 const arrayAbc = [
   "a",
   "b",
@@ -198,12 +199,14 @@ function changeToCredits(boolean) {
   let createH1 = document.createElement("h1");
   //if wins
   if (boolean) {
-    createH1.innerText = "YOU WIN";
+    createH1.innerText = "YOU WON";
     creditsContent.insertAdjacentElement("afterbegin", createH1);
+    creditsTime.innerText = "You won in " + currentPlayer.score + " seconds";
     if (contDifficult < 6) contDifficult++;
   } else {
     createH1.innerText = "GAME OVER";
     creditsContent.insertAdjacentElement("afterbegin", createH1);
+    creditsTime.innerText = "Try again";
   }
   //add functionality to play again btn
   playAgainBtn.addEventListener("click", playAgain);
@@ -223,6 +226,7 @@ function playAgain() {
 function deleteGameDisplay() {
   // Empty usedletters array
   usedLetters = [];
+  userArray = [];
   //remove keyboard event listener
   document.removeEventListener("keyup", keyboardPress);
   //remove msg from credits page
