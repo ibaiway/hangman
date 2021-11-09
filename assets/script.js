@@ -57,9 +57,11 @@ let contDifficult = 4;
 //functions
 //REGISTER FUNCTIONS
 //ENTER METHOD
-document.addEventListener("keyup",validateRegister);
+document.addEventListener("keyup",(e)=>{
+  if(e.key=="Enter")validateRegister();
+},{once:true});
 //CLICK METHOD
-document.getElementById("startButton").addEventListener("click", validateRegister)
+document.getElementById("startButton").addEventListener("click", validateRegister,{once:true})
 function validateRegister(){
   if (setName()) {
     startGame(4);
@@ -96,8 +98,6 @@ function createPlayer(name, score = 0) {
   };
 }
 function startGame(difficulty) {
-  //*remove event listener from enter
-  document.removeEventListener("keyup",validateRegister);
   // Change section -> set hangman Image to step 0 -> errors = 0 -> get a word from words array
   // gets value difficulty, depending on this we will take a more difficult word.
   currentWord =
@@ -176,7 +176,6 @@ function keyboardPress(event) {
 function removeBtn(element) {
   //removes button of a given letter element
   element.style.visibility = "hidden";
-  element.removeEventListener("click", pressedBtn);
 }
 function btnSpawn() {
   for (let i = 0; i < arrayAbc.length; i++) {
@@ -184,7 +183,7 @@ function btnSpawn() {
     createBtn.classList.add("keyBtn");
     createBtn.innerText = arrayAbc[i];
     keyboard.appendChild(createBtn);
-    createBtn.addEventListener("click", pressedBtn);
+    createBtn.addEventListener("click", pressedBtn,{once:true});
   }
 }
 function changeImage(error) {
@@ -214,10 +213,10 @@ function changeToCredits(boolean) {
     creditsTime.innerText = "Try again";
   }
   //add functionality to play again btn
-  playAgainBtn.addEventListener("click", playAgain);
+  playAgainBtn.addEventListener("click", playAgain,{once:true});
   document.addEventListener("keyup",(e)=>{
     if(e.key=="Enter")playAgain();
-  });
+  },{once:true});
   //gamepage hidden, display the credits page
   gamePage.style.display = "none";
   creditPage.style.display = "flex";
@@ -229,7 +228,6 @@ function playAgain() {
   startGame(contDifficult);
   //hide the credit page
   creditPage.style.display = "none";
-  playAgainBtn.removeEventListener("click", playAgain);
 }
 function deleteGameDisplay() {
   // Empty usedletters array
