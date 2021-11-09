@@ -6,6 +6,7 @@ const registerPage = document.getElementById("register");
 const gamePage = document.getElementById("game");
 const creditPage = document.getElementById("credits");
 const letterContainer = document.querySelector(".letter-container");
+const creditsContent = document.getElementsByClassName("content")[1];
 const arrayAbc = [
   "a",
   "b",
@@ -129,13 +130,12 @@ function processLetter(letter) {
     error++;
     changeImage(error);
     if (error == 6) {
-      document.removeEventListener("keyup", keyboardPress);
-      alert("HAS PERDIDO, METE UN LEURO");
+      document.removeEventListener("keyup", keyboardPress); 
+      changeToCredits(false);
     }
   }
   if (userArray.toString() == letters.toString()) {
     win();
-    alert("HAS GANADO");
   }
 }
 function pressedBtn(e) {
@@ -185,8 +185,19 @@ function win(){
   console.log(Math.round((timePlayed/1000)*10)/10);
   currentPlayer.score=Math.round((timePlayed/1000)*10)/10;
   placeInScoreboard(currentPlayer);
+  changeToCredits(true);
 }
 
-function changeToCredits() {
+function changeToCredits(boolean) {
   //This function changes the active section to the credits section
+  let createH1=document.createElement("h1");
+  if(boolean){
+    createH1.innerText="YOU WIN";
+    creditsContent.insertAdjacentElement("afterbegin",createH1);
+  }else{
+    createH1.innerText="GAME OVER";
+    creditsContent.insertAdjacentElement("afterbegin",createH1);
+  }
+  gamePage.style.display="none";
+  creditPage.style.display="flex";
 }
