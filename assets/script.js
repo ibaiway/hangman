@@ -217,11 +217,12 @@ function playAgain() {
   //if the user wins, higher difficult
   startGame(contDifficult);
   //hide the credit page
-  gamePage.style.display = "grid";
   creditPage.style.display = "none";
   playAgainBtn.removeEventListener("click", playAgain);
 }
 function deleteGameDisplay() {
+  // Empty usedletters array
+  usedLetters = [];
   //remove keyboard event listener
   document.removeEventListener("keyup", keyboardPress);
   //remove msg from credits page
