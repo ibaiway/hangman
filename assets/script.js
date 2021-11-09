@@ -7,6 +7,7 @@ const gamePage = document.getElementById("game");
 const creditPage = document.getElementById("credits");
 const letterContainer = document.querySelector(".letter-container");
 const creditsContent = document.getElementsByClassName("content")[1];
+const playAgainBtn = document.getElementById("playAgain");
 const arrayAbc = [
   "a",
   "b",
@@ -45,10 +46,11 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer, currentWord, letters, lineLetters,startTime;
+let currentPlayer, currentWord, letters, lineLetters,startTime,error;
 let userArray = [];
 let usedLetters = [];
-let error = 0;
+let isWinner=true;
+let contDifficult=4;
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
@@ -108,6 +110,7 @@ function changeToGame() {
   //set the events listeners for the letter buttons
   //set the hangman image to step 0
   changeImage(0);
+  error = 0;
   lineLetters = document.getElementsByClassName("letter");
   registerPage.style.display = "none";
   gamePage.style.display = "grid";
@@ -131,7 +134,7 @@ function processLetter(letter) {
     changeImage(error);
     if (error == 6) {
       document.removeEventListener("keyup", keyboardPress); 
-      changeToCredits(false);
+      changeToCredits(!isWinner);
     }
   }
   if (userArray.toString() == letters.toString()) {
@@ -185,19 +188,49 @@ function win(){
   console.log(Math.round((timePlayed/1000)*10)/10);
   currentPlayer.score=Math.round((timePlayed/1000)*10)/10;
   placeInScoreboard(currentPlayer);
-  changeToCredits(true);
+  changeToCredits(isWinner);
 }
 
 function changeToCredits(boolean) {
   //This function changes the active section to the credits section
   let createH1=document.createElement("h1");
+  //if wins
   if(boolean){
     createH1.innerText="YOU WIN";
     creditsContent.insertAdjacentElement("afterbegin",createH1);
+    if(contDifficult<6)contDifficult++;
+
   }else{
     createH1.innerText="GAME OVER";
     creditsContent.insertAdjacentElement("afterbegin",createH1);
   }
+  //add functionality to play again btn
+  playAgainBtn.addEventListener("click",playAgain);
+  //gamepage hidden, display the credits page
   gamePage.style.display="none";
   creditPage.style.display="flex";
+}
+function playAgain(){
+  //delete text h1 and game display
+  deleteGameDisplay();
+  //if the user wins, higher difficult
+    startGame(contDifficult);
+  //hide the credit page
+  gamePage.style.display="grid";
+  creditPage.style.display="none";
+  playAgainBtn.removeEventListener("click",playAgain);
+
+}
+function deleteGameDisplay(){
+    //remove msg from credits page
+    creditsContent.firstChild.innerText="";
+     //remove all btns to start again
+     while (keyboard.firstChild) {
+      keyboard.lastChild.removeEventListener("click",pressedBtn);
+      keyboard.removeChild(keyboard.lastChild);
+    }
+    //delete underscore of letters
+    while(letterContainer.firstChild){
+      letterContainer.removeChild(letterContainer.lastChild);
+    }
 }
