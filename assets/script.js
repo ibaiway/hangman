@@ -133,7 +133,6 @@ function processLetter(letter) {
     error++;
     changeImage(error);
     if (error == 6) {
-      document.removeEventListener("keyup", keyboardPress); 
       changeToCredits(!isWinner);
     }
   }
@@ -222,6 +221,8 @@ function playAgain(){
 
 }
 function deleteGameDisplay(){
+    //remove keyboard event listener
+    document.removeEventListener("keyup", keyboardPress); 
     //remove msg from credits page
     creditsContent.firstChild.innerText="";
      //remove all btns to start again
