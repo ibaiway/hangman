@@ -102,7 +102,6 @@ h1 {
   background-color:#b3ca65;
   padding: 0.9em;
   margin:7px;
-  box-shadow:inset 0.2em -0.3em #8BA949;
   text-transform: uppercase;
   border: cadetblue;
   cursor:pointer;
@@ -142,6 +141,7 @@ h1 {
   }
   aside {
     background-color: cadetblue;
+    width:10%;
     height: 35%;
     padding:10px;
     position:absolute;
@@ -170,6 +170,10 @@ h1 {
     grid-row: 1 / span 3;
     justify-content: space-around;
     padding: 5%;
+  }
+  .letter-container {
+    width:60%;
+
   }
   #keyboard {
     grid-row: 4 / span 1;

@@ -170,7 +170,7 @@ function keyboardPress(event) {
         if (!usedLetters.includes(lowerCaseLetter)) {
           processLetter(event.key.toLowerCase());
           for (let index = 0; index < keyboard.children.length; index++) {
-            if (keyboard.children[index].innerText == lowerCaseLetter) {
+            if (keyboard.children[index].innerText.toLowerCase() == lowerCaseLetter) {
               removeBtn(keyboard.children[index]);
             }
           }
