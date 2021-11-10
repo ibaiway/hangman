@@ -62,7 +62,7 @@ document.addEventListener("keyup", keyboardPress);
 //CLICK METHOD
 document
   .getElementById("startButton")
-  .addEventListener("click", validateRegister, { once: true });
+  .addEventListener("click", validateRegister);
 function validateRegister() {
   if (setName()) {
     startGame(4);
@@ -143,9 +143,9 @@ function processLetter(letter) {
     error++;
     changeImage(error);
     if (error == 6) {
-      setTimeout(function(){
+      setTimeout(function () {
         changeToCredits(!isWinner);
-      },500);
+      }, 500);
     }
   }
   if (userArray.toString() == letters.toString()) {
@@ -170,7 +170,10 @@ function keyboardPress(event) {
         if (!usedLetters.includes(lowerCaseLetter)) {
           processLetter(event.key.toLowerCase());
           for (let index = 0; index < keyboard.children.length; index++) {
-            if (keyboard.children[index].innerText.toLowerCase() == lowerCaseLetter) {
+            if (
+              keyboard.children[index].innerText.toLowerCase() ==
+              lowerCaseLetter
+            ) {
               removeBtn(keyboard.children[index]);
             }
           }
@@ -200,7 +203,7 @@ function btnSpawn() {
     const createBtn = document.createElement("button");
     createBtn.classList.add("keyBtn");
     createBtn.classList.add("bouncy");
-    createBtn.style.animationDelay=`${i / 10}s`;
+    createBtn.style.animationDelay = `${i / 10}s`;
     createBtn.innerText = arrayAbc[i];
     keyboard.appendChild(createBtn);
     createBtn.addEventListener("click", pressedBtn, { once: true });
@@ -215,10 +218,9 @@ function win() {
   console.log(Math.round((timePlayed / 1000) * 10) / 10);
   currentPlayer.score = Math.round((timePlayed / 1000) * 10) / 10;
   placeInScoreboard(currentPlayer);
-  setTimeout(function(){
+  setTimeout(function () {
     changeToCredits(isWinner);
-  },700);
-  
+  }, 700);
 }
 
 function changeToCredits(boolean) {
