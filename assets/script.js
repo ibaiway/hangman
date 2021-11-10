@@ -143,7 +143,9 @@ function processLetter(letter) {
     error++;
     changeImage(error);
     if (error == 6) {
-      changeToCredits(!isWinner);
+      setTimeout(function(){
+        changeToCredits(!isWinner);
+      },500);
     }
   }
   if (userArray.toString() == letters.toString()) {
@@ -152,7 +154,7 @@ function processLetter(letter) {
 }
 function pressedBtn(e) {
   //Detects clicked letter
-  processLetter(e.target.innerText);
+  processLetter(e.target.innerText.toLowerCase());
   console.log(e.target.innerText);
   //e.target.style.visibility = "hidden";
   //e.target.removeEventListener("click", pressedBtn);
@@ -168,7 +170,7 @@ function keyboardPress(event) {
         if (!usedLetters.includes(lowerCaseLetter)) {
           processLetter(event.key.toLowerCase());
           for (let index = 0; index < keyboard.children.length; index++) {
-            if (keyboard.children[index].innerText == lowerCaseLetter) {
+            if (keyboard.children[index].innerText.toLowerCase() == lowerCaseLetter) {
               removeBtn(keyboard.children[index]);
             }
           }
@@ -197,6 +199,8 @@ function btnSpawn() {
   for (let i = 0; i < arrayAbc.length; i++) {
     const createBtn = document.createElement("button");
     createBtn.classList.add("keyBtn");
+    createBtn.classList.add("bouncy");
+    createBtn.style.animationDelay=`${i / 10}s`;
     createBtn.innerText = arrayAbc[i];
     keyboard.appendChild(createBtn);
     createBtn.addEventListener("click", pressedBtn, { once: true });
@@ -211,7 +215,10 @@ function win() {
   console.log(Math.round((timePlayed / 1000) * 10) / 10);
   currentPlayer.score = Math.round((timePlayed / 1000) * 10) / 10;
   placeInScoreboard(currentPlayer);
-  changeToCredits(isWinner);
+  setTimeout(function(){
+    changeToCredits(isWinner);
+  },700);
+  
 }
 
 function changeToCredits(boolean) {
