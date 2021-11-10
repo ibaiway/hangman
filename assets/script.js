@@ -152,7 +152,7 @@ function processLetter(letter) {
 }
 function pressedBtn(e) {
   //Detects clicked letter
-  processLetter(e.target.innerText);
+  processLetter(e.target.innerText.toLowerCase());
   console.log(e.target.innerText);
   //e.target.style.visibility = "hidden";
   //e.target.removeEventListener("click", pressedBtn);
@@ -197,6 +197,8 @@ function btnSpawn() {
   for (let i = 0; i < arrayAbc.length; i++) {
     const createBtn = document.createElement("button");
     createBtn.classList.add("keyBtn");
+    createBtn.classList.add("bouncy");
+    createBtn.style.animationDelay=`${i / 10}s`;
     createBtn.innerText = arrayAbc[i];
     keyboard.appendChild(createBtn);
     createBtn.addEventListener("click", pressedBtn, { once: true });
