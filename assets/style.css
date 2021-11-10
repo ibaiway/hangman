@@ -8,25 +8,31 @@ body {
   background-size: cover;
 }
 main {
-  
   max-width: 100%;
-  height: 600px;
-  margin: 0 auto;
+  margin: auto;
+  background-color: rgba(95, 158, 160,.7);
+  border-radius:5px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 section {
+  
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
-  background-color:cadetblue;
-}
-aside {
-  grid-column: 1 / span 1;
-  grid-row: 3 / span 1;
   
 }
-
+/* SCOREBOARD SECTION */
+aside {
+  position:absolute;
+  right:10px;
+  top:5px;
+  font-size:11px;
+}
+#scoreboard p{
+  border-bottom: 1px dotted black;
+}
+/*REGISTER SECTION*/
 #register {
   display: flex;
   justify-content: center;
@@ -40,45 +46,55 @@ h1 {
 #game {
   display: none;
   width: 100%;
+  height:100%;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 #hangDivImg {
   display:flex;
   align-items: center;
   justify-content: center;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 1;
   
 }
 #hangImg{
-  width:25%;
+  width:40%;
 }
+/* word section */
 #word {
-  grid-row: 4 / span 1;
-  
+  grid-row: 2 / span 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.letter-container {
+  display: flex;
+  width:60%;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+.letter {
+  font-size:25px;
+  color:red;
+  border-bottom: 10px solid black;
+  width: 100%;
   text-align: center;
 }
+/* Keyboard section */
 #keyboard {
   display: flex;
   flex-wrap: wrap;
-  grid-row: 5 / span 1;
-  
+  grid-row: 7 / span 1;
 }
-/* word section */
-.letter-container {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.letter {
-  border-bottom: 10px solid black;
-  width: 7%;
-  margin-top: 6%;
-  text-align: center;
+.keyBtn{
+  border-radius:5px;
+  background-color:#b3ca65;
+  padding: 1em;
+  box-shadow:inset 0.1em -0.2em #8BA949;
+  margin:5px 5px;
 }
 /* Credits section */
 #credits {
@@ -89,19 +105,21 @@ h1 {
 @media only screen and (min-width: 768px) {
   main {
     width: 60%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height:800px;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 15% 70% 15%;
   }
   section {
     grid-column: 1 / span 3;
     grid-row: 1 / span 3;
-    
   }
   aside {
-    grid-column: 4 / span 1;
-    grid-row: 2 / span 1;
-    background-color: chartreuse;
-    margin-left: 20%;
+    background-color: cadetblue;
+    height: 35%;
+    padding:10px;
+    position:absolute;
+    top:20px;
+    right:20px;
   }
   h1 {
     font-size: 3vw;
@@ -109,11 +127,11 @@ h1 {
   /* GAME SECTION */
   #game {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4,1fr);
   }
   #hangDivImg {
     grid-column: 1 / span 1;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
     
   }
   #hangImg{
@@ -122,15 +140,17 @@ h1 {
   }
   #word {
     grid-column: 2 / span 2;
-    grid-row: 1 / span 2;
-    
+    grid-row: 1 / span 3;
+    justify-content: space-around;
     padding: 5%;
   }
   #keyboard {
-    grid-row: 3 / span 1;
+    grid-row: 4 / span 1;
     grid-column: 1 / span 3;
   }
   .keyBtn {
-    width: 11%;
+    padding: 2em;
+    margin:10px;
+    border-radius:10px;
   }
 }
