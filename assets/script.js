@@ -143,7 +143,9 @@ function processLetter(letter) {
     error++;
     changeImage(error);
     if (error == 6) {
-      changeToCredits(!isWinner);
+      setTimeout(function(){
+        changeToCredits(!isWinner);
+      },500);
     }
   }
   if (userArray.toString() == letters.toString()) {
@@ -213,7 +215,10 @@ function win() {
   console.log(Math.round((timePlayed / 1000) * 10) / 10);
   currentPlayer.score = Math.round((timePlayed / 1000) * 10) / 10;
   placeInScoreboard(currentPlayer);
-  changeToCredits(isWinner);
+  setTimeout(function(){
+    changeToCredits(isWinner);
+  },700);
+  
 }
 
 function changeToCredits(boolean) {
