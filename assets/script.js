@@ -250,6 +250,7 @@ function changeToCredits(boolean) {
   if (boolean) {
     creditsTime.innerText = "You won in " + currentPlayer.score + " seconds";
     //APPEAR NEXT LEVEL BTN
+    //Condition if nextlevel button spawned, dont create more
     if(!btnSpawned){
       nextLevelBtn.classList.add("button-5");
       nextLevelBtn.innerText="Next level";
@@ -258,6 +259,7 @@ function changeToCredits(boolean) {
     }
     createimg.src="assets/img/win.gif";
   } else {
+    //if you loss after win, remove the nextlevel bttn (and clear "YOU WIN")
     if(btnSpawned){
       creditsContent.removeChild(creditsContent.lastChild)
       creditsTime.innerText="";

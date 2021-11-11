@@ -111,6 +111,11 @@ h1 {
 .letter {
   font-size: 25px;
   color: red;
+  text-transform: uppercase;
+  background-color:#ffffff;
+  border-radius:10px;
+  font-weight: bold;
+  font-family: 'Architects Daughter', cursive;
   border-bottom: 7px solid black;
   width: 100%;
   text-align: center;
