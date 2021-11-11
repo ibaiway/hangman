@@ -51,6 +51,7 @@ h1 {
 #current {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
+  text-align:center;
 }
 #hangDivImg {
   display: flex;
@@ -92,6 +93,8 @@ h1 {
   flex-wrap: wrap;
   grid-row: 3 / span 1;
   grid-column: 1 / span 2;
+  background-color:khaki;
+  border:15px groove black;
 }
 .keyBtn {
   border-radius: 5px;
@@ -156,6 +159,7 @@ h1 {
     position: absolute;
     top: 20px;
     right: 20px;
+    border-radius:10px;
   }
   h1 {
     font-size: 3vw;
@@ -164,6 +168,10 @@ h1 {
   #game {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
+  }
+  #current{
+    grid-column:1/span 1;
+    grid-row:1/span 1;
   }
   #hangDivImg {
     grid-column: 1 / span 1;
@@ -188,7 +196,7 @@ h1 {
   .keyBtn {
     width: 65px;
     margin: 10px;
-    border-radius: 50px;
+    border-radius: 10px;
   }
 }
 
