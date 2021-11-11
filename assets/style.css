@@ -1,3 +1,37 @@
+/* ANIMATION */
+@keyframes color-change {
+  0% { color: red; }
+  50% { color: blue; }
+  100% { color: red; }
+}
+@keyframes bouncy {
+  0% {
+    top: 0em;
+  }
+  40% {
+    top: 0em;
+  }
+  43% {
+    top: -0.9em;
+  }
+  46% {
+    top: 0em;
+  }
+  48% {
+    top: -0.4em;
+  }
+  50% {
+    top: 0em;
+  }
+  100% {
+    top: 0em;
+  }
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
 /* General styles */
 body {
   font-family: "Inter", sans-serif;
@@ -80,7 +114,10 @@ h1 {
   background-color:#8BA949;
   color:#ffffff;
   width: 70%;
-  height: 60%;;
+  height: 60%;
+}
+#current p {
+  animation:blink-animation 2s steps(6, start) infinite;
 }
 #hangDivImg {
   display: flex;
@@ -143,35 +180,6 @@ h1 {
   cursor: pointer;
   font-family: 'Architects Daughter', cursive;
   font-size: 0.9em;
-}
-/* ANIMATION */
-@keyframes color-change {
-  0% { color: red; }
-  50% { color: blue; }
-  100% { color: red; }
-}
-@keyframes bouncy {
-  0% {
-    top: 0em;
-  }
-  40% {
-    top: 0em;
-  }
-  43% {
-    top: -0.9em;
-  }
-  46% {
-    top: 0em;
-  }
-  48% {
-    top: -0.4em;
-  }
-  50% {
-    top: 0em;
-  }
-  100% {
-    top: 0em;
-  }
 }
 .bouncy {
   animation: bouncy 5s linear;

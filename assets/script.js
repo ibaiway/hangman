@@ -47,6 +47,9 @@ const hangmanImages = [
   "assets/img/hangman4.png",
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
+  "assets/img/hangman7.png",
+  "assets/img/hangman8.png",
+  "assets/img/hangman9.png"
 ];
 let currentPlayer, currentWord, letters, lineLetters, startTime, error,timeAlready,setTime,btnSpawned=false;
 let userArray = [];
@@ -156,10 +159,11 @@ function processLetter(letter) {
   } else {
     error++;
     changeImage(error);
-    if (error == 6) {
+    console.log(error);
+    if (error == 9) {
       setTimeout(function () {
         changeToCredits(!isWinner);
-      }, 500);
+      }, 300);
     }
   }
   if (userArray.toString() == letters.toString()) {
@@ -197,6 +201,7 @@ function keyboardPress(event) {
     case "credits":
       if (event.key == "Enter") {
         playAgain();
+        
       }
       break;
 
