@@ -12,16 +12,8 @@ function placeInScoreboard(currentPlayer) {
     let playerHistoric = JSON.parse(localStorage.scoreboard);
     console.log(playerHistoric);
     for (let i = 0; i < playerHistoric.length; i++) {
-      //beta test (not display the same user more than 1 time)
-      if(playerHistoric[i].name==currentPlayer.name){
-          if(playerHistoric[i].score < currentPlayer.score){
-            return;
-          }else{
-              playerHistoric.splice(i,0,currentPlayer);
-              playerHistoric.splice(i,1);
-            }
-
-      }else if(playerHistoric[i].score > currentPlayer.score){
+     
+      if(playerHistoric[i].score > currentPlayer.score){
         playerHistoric.splice(i, 0, currentPlayer);
         playerHistoric.splice(3, 1);
         localStorage.scoreboard = JSON.stringify(playerHistoric);

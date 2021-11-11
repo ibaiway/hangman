@@ -157,4 +157,4 @@ const wordList = {
   ],
 };
 
-export { wordList };
+//export { wordList };
