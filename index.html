@@ -1,58 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/style.css" />
-    <script src="assets/script.js" defer type="module"></script>
-    <script src="assets/scoreboard.js" defer></script>
-    <title>Hangman</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <main>
-      <section id="register">
-        <div class="content">
-          <h1>Choose a user name</h1>
-          <input
-            type="text"
-            id="name"
-            placeholder="User name"
-            name="name"
-            class="form__input"
-          />
-          <button id="startButton" class="bigButton button-5">Start</button>
-        </div>
-      </section>
-      <section id="game">
-        <div id="current"></div>
-        <aside>
-          <h2>User scores</h2>
-          <div id="scoreboard"></div>
-        </aside>
-        <div id="hangDivImg">
-          <img id="hangImg" src="assets/img/hangman0.png" alt="hangman" />
-        </div>
-        <div id="word">
-          <h2>Guess the word</h2>
-          <!-- div for letters -->
-          <div class="letter-container"></div>
-        </div>
-        <div id="keyboard"></div>
-      </section>
-      <section id="credits">
-        <div class="content">
-          <h2 id="creditsTime">Lorem</h2>
-          <button class="bigButton" id="playAgain">Play again</button>
-        </div>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/script.js" defer type="module"></script>
+  <script src="assets/scoreboard.js" defer></script>
+  <script src="assets/timer.js" defer></script>
+  <title>Hangman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <main>
+    <section id="register">
+      <div class="content">
+        <h1>Choose a user name</h1>
+        <input type="text" id="name" placeholder="User name" name="name" class="form__input" />
+        <button id="startButton" class="bigButton button-5">Start</button>
+      </div>
+    </section>
+    <section id="game">
+      <div id="timer"></div>
+      <div id="current"></div>
+      <aside>
+        <h2>User scores</h2>
+        <div id="scoreboard"></div>
+      </aside>
+      <div id="hangDivImg">
+        <img id="hangImg" src="assets/img/hangman0.png" alt="hangman" />
+      </div>
+      <div id="word">
+        <h2>Guess the word</h2>
+        <!-- div for letters -->
+        <div class="letter-container"></div>
+      </div>
+      <div id="keyboard"></div>
+    </section>
+    <section id="credits">
+      <div class="content">
+        <h2 id="creditsTime">Lorem</h2>
+        <button class="bigButton" id="playAgain">Play again</button>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>

@@ -169,6 +169,17 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
+  #timer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:40%;
+    height: 25%;
+    grid-column:3 / span 1;
+    grid-row:1 / span 1;
+    background-color:yellow;
+    
+  }
   #current{
     grid-column:1/span 1;
     grid-row:1/span 1;

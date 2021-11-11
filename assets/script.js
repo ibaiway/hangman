@@ -48,12 +48,13 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer, currentWord, letters, lineLetters, startTime, error;
+let currentPlayer, currentWord, letters, lineLetters, startTime, error,timeAlready,setTime;
 let userArray = [];
 let usedLetters = [];
 let isWinner = true;
 let contDifficult = 4;
 let status = "start";
+
 //eventListeners
 //functions
 //REGISTER FUNCTIONS
@@ -127,6 +128,19 @@ function changeToGame() {
   btnSpawn();
   status = "game";
   startTime = new Date();
+  //TODO FIRST METHOD TIMER
+  setTime=setInterval(function(){
+    timeAlready=Date.now();
+    timePassed=timeAlready-startTime;
+    let min=Math.floor((timePassed/60000));
+    let secs = Math.floor((timePassed%60000)/1000);
+    if(secs<10 && min<10)timerContainer.innerText="0"+min +":0"+secs;
+    else if(secs<10) timerContainer.innerText=min+":0"+secs;
+    else if(min<10)timerContainer.innerText="0"+min+":"+secs;
+    else{timerContainer.innerText=min+":"+secs;}
+  },1000);
+//*TODO SECOND METHOD TIMER
+//setTime=setInterval(timer,1000);
 }
 //GAME FUNCTIONS
 
@@ -224,6 +238,10 @@ function win() {
 }
 
 function changeToCredits(boolean) {
+  //stop timer
+  clearInterval(setTime);
+  //*ONLY FOR SECOND METHOD TIMER
+  //resetSecsAndMins();
   //This function changes the active section to the credits section
   let createH1 = document.createElement("h1");
   //if wins
