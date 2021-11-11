@@ -19,13 +19,16 @@
   <main>
     <section id="register">
       <div class="content">
-        <h1>Choose a user name</h1>
+        <img src="assets/img/hangman_welcome.png" alt="welcome">
         <input type="text" id="name" placeholder="User name" name="name" class="form__input" />
         <button id="startButton" class="bigButton button-5">Start</button>
       </div>
     </section>
     <section id="game">
-      <div id="timer"></div>
+      <div id="timer-container">
+        <img src="assets/img/time_management.svg" alt="time_management">
+        <div id="timer"></div>
+      </div>
       <div id="current"></div>
       <aside>
         <h2>User scores</h2>
@@ -35,7 +38,7 @@
         <img id="hangImg" src="assets/img/hangman0.png" alt="hangman" />
       </div>
       <div id="word">
-        <h2>Guess the word</h2>
+        <img src="assets/img/guess.png" alt="Guess_the_word">
         <!-- div for letters -->
         <div class="letter-container"></div>
       </div>
@@ -44,7 +47,7 @@
     <section id="credits">
       <div class="content">
         <h2 id="creditsTime">Lorem</h2>
-        <button class="bigButton" id="playAgain">Play again</button>
+        <button class="bigButton button-5" id="playAgain">Play again</button>
       </div>
     </section>
   </main>
