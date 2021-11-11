@@ -77,6 +77,10 @@ h1 {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
   text-align:center;
+  background-color:#8BA949;
+  color:#ffffff;
+  width: 70%;
+  height: 60%;;
 }
 #hangDivImg {
   display: flex;
@@ -137,6 +141,8 @@ h1 {
   text-transform: uppercase;
   border: cadetblue;
   cursor: pointer;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 0.9em;
 }
 /* ANIMATION */
 @keyframes color-change {

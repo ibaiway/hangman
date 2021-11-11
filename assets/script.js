@@ -257,12 +257,18 @@ function changeToCredits(boolean) {
       creditsContent.appendChild(nextLevelBtn);
       btnSpawned=true;
     }
+    //IF THE DIFFICULT IS SETTED TO MAX
+    if(contDifficult==6){
+      creditsContent.removeChild(creditsContent.lastChild)
+      btnSpawned=false;
+    };
     createimg.src="assets/img/win.gif";
   } else {
     //if you loss after win, remove the nextlevel bttn (and clear "YOU WIN")
     if(btnSpawned){
       creditsContent.removeChild(creditsContent.lastChild)
       creditsTime.innerText="";
+      btnSpawned=false;
     };
     createH1.innerText = "GAME OVER";
     createimg.src="assets/img/loose.gif";
@@ -271,8 +277,10 @@ function changeToCredits(boolean) {
   //add functionality to play again btn
   playAgainBtn.addEventListener("click", playAgain, { once: true });
   nextLevelBtn.addEventListener("click",function(){
-    if (contDifficult < 6) contDifficult++;
-    playAgain();
+    if (contDifficult < 6) {
+      contDifficult++;
+      playAgain();
+    }
   });
   status = "credits";
   //gamepage hidden, display the credits page
