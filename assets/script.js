@@ -222,7 +222,7 @@ function btnSpawn() {
     const createBtn = document.createElement("button");
     createBtn.classList.add("keyBtn");
     createBtn.classList.add("bouncy");
-    createBtn.style.animationDelay = `${i / 10}s`;
+    createBtn.style.animationDelay = `${i / 15}s`;
     createBtn.innerText = arrayAbc[i];
     keyboard.appendChild(createBtn);
     createBtn.addEventListener("click", pressedBtn, { once: true });
