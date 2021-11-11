@@ -48,7 +48,7 @@ const hangmanImages = [
   "assets/img/hangman5.png",
   "assets/img/hangman6.png",
 ];
-let currentPlayer, currentWord, letters, lineLetters, startTime, error,timeAlready,setTime;
+let currentPlayer, currentWord, letters, lineLetters, startTime, error,timeAlready,setTime,btnSpawned=false;
 let userArray = [];
 let usedLetters = [];
 let isWinner = true;
@@ -244,19 +244,34 @@ function changeToCredits(boolean) {
   //resetSecsAndMins();
   //This function changes the active section to the credits section
   let createH1 = document.createElement("h1");
+  let nextLevelBtn = document.createElement("button");
+  let createimg = document.getElementById("imgCredits");
   //if wins
   if (boolean) {
-    createH1.innerText = "YOU WON";
-    creditsContent.insertAdjacentElement("afterbegin", createH1);
     creditsTime.innerText = "You won in " + currentPlayer.score + " seconds";
-    if (contDifficult < 6) contDifficult++;
+    //APPEAR NEXT LEVEL BTN
+    if(!btnSpawned){
+      nextLevelBtn.classList.add("button-5");
+      nextLevelBtn.innerText="Next level";
+      creditsContent.appendChild(nextLevelBtn);
+      btnSpawned=true;
+    }
+    createimg.src="assets/img/win.gif";
   } else {
+    if(btnSpawned){
+      creditsContent.removeChild(creditsContent.lastChild)
+      creditsTime.innerText="";
+    };
     createH1.innerText = "GAME OVER";
+    createimg.src="assets/img/loose.gif";
     creditsContent.insertAdjacentElement("afterbegin", createH1);
-    creditsTime.innerText = "Try again";
   }
   //add functionality to play again btn
   playAgainBtn.addEventListener("click", playAgain, { once: true });
+  nextLevelBtn.addEventListener("click",function(){
+    if (contDifficult < 6) contDifficult++;
+    playAgain();
+  });
   status = "credits";
   //gamepage hidden, display the credits page
   gamePage.style.display = "none";
